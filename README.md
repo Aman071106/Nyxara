@@ -1,5 +1,5 @@
 # 🌌 Nyxara
-
+https://chatgpt.com/c/67fe0eea-a004-8004-a46e-470f8dd5b763
 **Nyxara** is a Flutter WebApp designed to detect data breaches using the Have I Been Pwned (HIBP) API and provide AI-powered assistance and security advice. Inspired by **Nyx** (goddess of night) and **Ara** (defense/guard), the app aims to be your night guardian in the digital world.
 
 ---
@@ -55,15 +55,21 @@ Vault uses encrypted local storage to store sensitive info
 ### 📦 Backend (`/backend`)
 ```
 backend/
-├── controllers/
-├── services/
-├── routes/
-├── models/
-├── sockets/
-├── ai_agents/
+├──src/
+       ├── controllers/
+       ├── services/
+       ├── routes/
+       ├── models/
+       ├── sockets/
+       ├── ai_agents/
+       ├── app.ts
+       └── server.ts
 ├── .env
-├── app.ts
-└── server.ts
+├── node_modules
+├── tsconfig.json
+└── package.json
+└── package-lock.json
+
 ```
 
 ### 📦 Flutter WebApp (`/flutter_web`)
