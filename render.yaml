@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: nyxara-backend
+    env: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    rootDir: backend
+    envVars:
+    
