@@ -70,6 +70,7 @@ backend/
 └── package.json
 └── package-lock.json
 
+backend deployment => render
 ```
 
 ### 📦 Flutter WebApp (`/flutter_web`)
@@ -125,22 +126,41 @@ lib/
 │      ├── AppStrings.dart
 │   └── utils/
 │             bycryption_utils.dart
-├── data/                  # Data Layer: Repositories, APIs, Mongo Services
+├── data/                  # Data Layer
 │   ├── datasources/
 │   └── repositories/
 │   ├── models/
-├── domain/                # Domain Layer: Entities, Repositories Abstractions, UseCases
+├── domain/                # Domain Layer
 │   ├── entities/
 │   ├── usecases/
 │   ├── repositories_impl/
-├── presentation/          # UI Layer: Pages, Widgets, Bloc/Cubit
+├── presentation/          # UI Layer
 │   ├── common/            
 │      ├── navbar.dart
 │      ├── app_assistance_bot.dart  (#backend structure remaining)
 │   ├── auth/
+│      ├── bloc/
+│      ├── screens/
+│             ├── auth_screen.dart
 │   ├── vault/
+│      ├── bloc/
+│      ├── screens/
+│             ├── vault_screen.dart
 │   ├── breach_analytics/
+│      ├── bloc/
+│      ├── screens/
+│             ├── breach_analytics_screen.dart
 │   ├── advisor_agent/
+│      ├── bloc/
+│      ├── screens/
+│             ├── advisor_agent_screen.dart
+│      ├── widgets/
 │   ├── about/
+│      ├── bloc/
+│      ├── screens/
+│             ├── auth_screen.dart
 │   └── pawned/
+│      ├── bloc/
+│      ├── screens/
+│             ├── pawned_screen.dart
 └── main.dart
