@@ -109,3 +109,38 @@ Open to contributions! Please open issues or submit PRs.
 ---
 
 > Made with 💙 using Flutter, Node.js, and AI
+
+
+Frontend architecture
+
+lib/
+├── core/                  
+│   ├── router/(#Gorouter)
+│      ├── routes_consts.dart
+│      ├── router_config.dart
+│   ├── theme/(only dark theme)
+│      ├── AppColors.dart       
+│   ├── constants/
+│      ├── AppDimensions.dart
+│      ├── AppStrings.dart
+│   └── utils/
+│             bycryption_utils.dart
+├── data/                  # Data Layer: Repositories, APIs, Mongo Services
+│   ├── datasources/
+│   └── repositories/
+│   ├── models/
+├── domain/                # Domain Layer: Entities, Repositories Abstractions, UseCases
+│   ├── entities/
+│   ├── usecases/
+│   ├── repositories_impl/
+├── presentation/          # UI Layer: Pages, Widgets, Bloc/Cubit
+│   ├── common/            
+│      ├── navbar.dart
+│      ├── app_assistance_bot.dart  (#backend structure remaining)
+│   ├── auth/
+│   ├── vault/
+│   ├── breach_analytics/
+│   ├── advisor_agent/
+│   ├── about/
+│   └── pawned/
+└── main.dart
