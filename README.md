@@ -71,6 +71,9 @@ backend/
 └── package-lock.json
 
 backend deployment => render
+
+https://nyxara-backend.onrender.com/api/check-breach-analytics?email=aman@gmail.com
+https://nyxara-backend.onrender.com/api/check-email?email=aman@gmail.com
 ```
 
 ### 📦 Flutter WebApp (`/flutter_web`)
