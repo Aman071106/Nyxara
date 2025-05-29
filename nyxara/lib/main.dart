@@ -1,25 +1,32 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nyxara/core/router/router_config.dart';
 import 'package:nyxara/data/datasources/user_datasource.dart';
+import 'package:nyxara/presentation/auth/bloc/auth_bloc.dart';
 
-Future<void> main() async {
-  const email = 'testuser@nyxara.com';
-  const password = 'securePass123';
-  final NyxaraDB nyxaraDB = NyxaraDB();
-  // Test create user
-  final createdUser = await nyxaraDB.createUser(email, password);
-  if (createdUser != null) {
-    print("✅ User created: ${createdUser.email}");
-  } else {
-    print("❌ Failed to create user.");
+void main() {
+  runApp(NyxaraApp());
+}
+
+class NyxaraApp extends StatelessWidget {
+  final GoRouter _router = NyxaraRouter.returnRouter();
+
+  NyxaraApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => AuthBloc(nyxaraDB: NyxaraDB()),
+        ),
+      ],
+      child: MaterialApp.router(
+        routerConfig: _router,
+        debugShowCheckedModeBanner: false,
+        title: 'Nyxara App',
+      ),
+    );
   }
-
-  // Test get user
-
-  // Test check user credentials
-  final validatedUser = await nyxaraDB.checkUser(email, password);
-  if (validatedUser != null) {
-    print("✅ User credentials valid for: ${validatedUser}");
-  } else {
-    print("❌ Invalid user credentials.");
-  }
-  print("🔌 Connection closed.");
 }

@@ -3,4 +3,13 @@ part of 'auth_bloc.dart';
 @immutable
 sealed class AuthState {}
 
-final class AuthInitial extends AuthState {}
+final class Unauthenticated extends AuthState {}
+
+final class Logging extends AuthState {} // Trying to log in
+
+final class SigningUp extends AuthState {} // Trying to sign up
+
+final class Authenticated extends AuthState {
+  final String email;
+  Authenticated({required this.email}); // Useful for tracking logged-in user
+}

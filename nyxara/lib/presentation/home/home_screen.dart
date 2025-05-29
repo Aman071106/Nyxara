@@ -542,7 +542,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Get Started Now', style: AppTextStyles.buttonLarge),
+                      GestureDetector(
+                        onTap: ()=>context.goNamed(NyxaraRoutes.loginPageRoute),
+                        child: Text('Get Started Now', style: AppTextStyles.buttonLarge)),
                       const SizedBox(width: AppDimensions.paddingS),
                       Icon(Icons.arrow_forward, size: AppDimensions.iconM),
                     ],
