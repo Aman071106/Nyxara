@@ -167,3 +167,7 @@ lib/
 │      ├── screens/
 │             ├── pawned_screen.dart
 └── main.dart
+
+
+what i found!!
+flutter web doesn't support native mongo_dart package
