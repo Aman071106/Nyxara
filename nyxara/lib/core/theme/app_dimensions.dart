@@ -103,3 +103,62 @@ class AppDimensions {
   
 
 }
+// Add these to your existing Dimensions class
+
+class DashboardDimensions {
+  // Padding & Margins
+  static const double screenPadding = 16.0;
+  static const double cardPadding = 20.0;
+  static const double cardMargin = 16.0;
+  static const double itemSpacing = 12.0;
+  static const double sectionSpacing = 16.0;
+  
+  // Border Radius
+  static const double cardRadius = 16.0;
+  static const double smallCardRadius = 12.0;
+  static const double chipRadius = 6.0;
+  static const double badgeRadius = 20.0;
+  
+  // Icon Sizes
+  static const double largeIcon = 80.0;
+  static const double mediumIcon = 28.0;
+  static const double smallIcon = 24.0;
+  static const double tinyIcon = 16.0;
+  
+  // Container Sizes
+  static const double iconContainer = 12.0;
+  static const double statIconContainer = 8.0;
+  static const double riskBadgeHeight = 32.0;
+  
+  // Shadow Properties
+  static const double shadowBlurRadius = 10.0;
+  static const double shadowOffset = 4.0;
+  static const double cardShadowBlur = 8.0;
+  static const double cardShadowOffset = 2.0;
+  
+  // Animation Durations (in milliseconds)
+  static const int fadeAnimationDuration = 800;
+  static const int slideAnimationDuration = 600;
+  static const int staggerDelay = 100;
+  
+  // Safe Status Card
+  static const double safeCardPadding = 24.0;
+  static const double safeCardRadius = 20.0;
+  static const double safeIconSize = 80.0;
+  
+  // Category Item
+  static const double categoryItemPadding = 16.0;
+  static const double categoryItemRadius = 12.0;
+  static const double categoryIconPadding = 6.0;
+  static const double categoryIconRadius = 6.0;
+  
+  // Chip Dimensions
+  static const double chipHorizontalPadding = 8.0;
+  static const double chipVerticalPadding = 4.0;
+  
+  // Timeline Item
+  static const double timelineItemPadding = 12.0;
+  static const double timelineItemRadius = 8.0;
+  static const double timelineYearPadding = 8.0;
+  static const double timelineYearRadius = 8.0;
+}

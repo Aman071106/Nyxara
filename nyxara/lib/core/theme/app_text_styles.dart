@@ -183,3 +183,79 @@ class AppTextStyles {
     height: 1.3,
   );
 }
+
+// Add these to your existing TextStyles class
+
+class DashboardTextStyles {
+  // Card Titles
+  static const TextStyle cardTitle = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: Color(0xFF2D3748),
+  );
+
+  // Risk Level Text
+  static const TextStyle riskLevelLabel = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: Color(0xFF718096),
+  );
+
+  static const TextStyle riskLevelValue = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+
+  // Stats Text
+  static const TextStyle statValue = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const TextStyle statLabel = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: Color(0xFF718096),
+  );
+
+  // Category Text
+  static const TextStyle categoryTitle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const TextStyle categoryChild = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
+
+  // Safe Status
+  static const TextStyle safeTitle = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
+
+  static const TextStyle safeSubtitle = TextStyle(
+    fontSize: 16,
+    color: Colors.white,
+  );
+
+  // Loading Text
+  static const TextStyle loadingText = TextStyle(
+    fontSize: 16,
+    color: Color(0xFF4A5568),
+  );
+
+  // Error Text
+  static const TextStyle errorTitle = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: Color(0xFF2D3748),
+  );
+
+  static const TextStyle errorSubtitle = TextStyle(
+    fontSize: 14,
+    color: Color(0xFF718096),
+  );
+}

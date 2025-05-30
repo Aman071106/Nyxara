@@ -60,7 +60,52 @@ class _DashBoardScreen extends State<DashBoardScreen> {
 
             return Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(children: [Text(xposedText)]),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("📊 Risk Level: ${entity.riskLabel.name}"),
+                    Text("🔢 Risk Score: ${entity.riskScore}"),
+                    const SizedBox(height: 12),
+
+                    Text(
+                      "📁 Exposed Categories (${entity.exposedCategoryCount ?? 0}):",
+                    ),
+                    ...entity.xposedData.map(
+                      (category) => Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //major cateogries of breach
+                          ...category.children.map(
+                            (child) => Text("   - $child"),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+
+                    Text("📅 Year-wise Breach Details:"),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: entity.yearwiseDetails[0].length,
+                      itemBuilder:
+                          (context, i) => ListTile(
+                            title: Text(
+                              entity.yearwiseDetails[0].keys.toList()[i],
+                            ), //year
+                            subtitle: Text(
+                              entity
+                                  .yearwiseDetails[0][entity
+                                      .yearwiseDetails[0]
+                                      .keys
+                                      .toList()[i]]
+                                  .toString(),
+                            ),
+                          ),
+                    ),
+                  ],
+                ),
+              ),
             );
           }
           return Center(child: Text("Unknown error"));

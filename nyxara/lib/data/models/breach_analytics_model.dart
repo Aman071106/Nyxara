@@ -71,10 +71,14 @@ class AnalyticsModel {
   AnalyticsModel({required this.breachMetrics, required this.breachesSummary});
 
   factory AnalyticsModel.fromJson(Map<String, dynamic> json) {
-    return AnalyticsModel(
+    final model = AnalyticsModel(
       breachMetrics: BreachMetrics.fromJson(json['BreachMetrics'] ?? {}),
       breachesSummary: BreachesSummary.fromJson(json['BreachesSummary'] ?? {}),
     );
+    print(
+      '[AnalyticsModel] breachMetrics=${model.breachMetrics}, breachesSummary=${model.breachesSummary}',
+    );
+    return model;
   }
 }
 
@@ -104,11 +108,9 @@ class BreachMetrics {
               return lvl1.map<List<IndustryData>>((lvl2) {
                 if (lvl2 is List) {
                   return lvl2.map<IndustryData>((e) {
-                    // Defensive: if e is List with length >= 2, parse IndustryData; else skip
                     if (e is List && e.length >= 2) {
                       return IndustryData.fromJson(e);
                     } else {
-                      // Provide default fallback
                       return IndustryData('unknown', 0);
                     }
                   }).toList();
@@ -121,14 +123,14 @@ class BreachMetrics {
             }
           }).toList();
         } catch (e) {
-          print('Error parsing industry: $e');
+          print('[BreachMetrics] Error parsing industry: $e');
           return <List<List<IndustryData>>>[];
         }
       }
       return <List<List<IndustryData>>>[];
     }
 
-    return BreachMetrics(
+    final metrics = BreachMetrics(
       getDetails: json['get_details'] ?? [],
       industry: parseIndustry(json['industry']),
       passwordsStrength:
@@ -148,6 +150,10 @@ class BreachMetrics {
               .map((e) => Map<String, int>.from(e as Map))
               .toList(),
     );
+    print(
+      '[BreachMetrics] getDetails=${metrics.getDetails}, industry=${metrics.industry}, passwordsStrength=${metrics.passwordsStrength}, risk=${metrics.risk}, xposedData=${metrics.xposedData}, yearwiseDetails=${metrics.yearwiseDetails}',
+    );
+    return metrics;
   }
 }
 
@@ -158,7 +164,9 @@ class IndustryData {
   IndustryData(this.name, this.value);
 
   factory IndustryData.fromJson(List<dynamic> json) {
-    return IndustryData(json[0] as String, (json[1] as num).toInt());
+    final data = IndustryData(json[0] as String, (json[1] as num).toInt());
+    print('[IndustryData] name=${data.name}, value=${data.value}');
+    return data;
   }
 }
 
@@ -176,12 +184,16 @@ class PasswordsStrength {
   });
 
   factory PasswordsStrength.fromJson(Map<String, dynamic> json) {
-    return PasswordsStrength(
+    final strength = PasswordsStrength(
       easyToCrack: json['EasyToCrack'] ?? 0,
       plainText: json['PlainText'] ?? 0,
       strongHash: json['StrongHash'] ?? 0,
       unknown: json['Unknown'] ?? 0,
     );
+    print(
+      '[PasswordsStrength] easyToCrack=${strength.easyToCrack}, plainText=${strength.plainText}, strongHash=${strength.strongHash}, unknown=${strength.unknown}',
+    );
+    return strength;
   }
 }
 
@@ -192,10 +204,12 @@ class Risk {
   Risk({required this.riskLabel, required this.riskScore});
 
   factory Risk.fromJson(Map<String, dynamic> json) {
-    return Risk(
+    final risk = Risk(
       riskLabel: riskLabelFromString(json['risk_label'] ?? ''),
       riskScore: (json['risk_score'] as num?)?.toInt() ?? 0,
     );
+    print('[Risk] riskLabel=${risk.riskLabel}, riskScore=${risk.riskScore}');
+    return risk;
   }
 }
 
@@ -205,12 +219,14 @@ class XposedDatum {
   XposedDatum({required this.children});
 
   factory XposedDatum.fromJson(Map<String, dynamic> json) {
-    return XposedDatum(
+    final datum = XposedDatum(
       children:
           (json['children'] as List<dynamic>? ?? [])
               .map((e) => XposedCategory.fromJson(e))
               .toList(),
     );
+    print('[XposedDatum] children=${datum.children}');
+    return datum;
   }
 }
 
@@ -234,7 +250,7 @@ class XposedCategory {
   });
 
   factory XposedCategory.fromJson(Map<String, dynamic> json) {
-    return XposedCategory(
+    final category = XposedCategory(
       name: json['name'] ?? '',
       children:
           json['children'] != null
@@ -254,6 +270,10 @@ class XposedCategory {
       groupRaw: json['group'],
       value: json['value'] is num ? (json['value'] as num).toInt() : null,
     );
+    print(
+      '[XposedCategory] name=${category.name}, colname=${category.colname}, group=${category.group}, colnameRaw=${category.colnameRaw}, groupRaw=${category.groupRaw}, value=${category.value}, children=${category.children}',
+    );
+    return category;
   }
 }
 
@@ -263,6 +283,8 @@ class BreachesSummary {
   BreachesSummary({required this.site});
 
   factory BreachesSummary.fromJson(Map<String, dynamic> json) {
-    return BreachesSummary(site: json['site'] ?? '');
+    final summary = BreachesSummary(site: json['site'] ?? '');
+    print('[BreachesSummary] site=${summary.site}');
+    return summary;
   }
 }

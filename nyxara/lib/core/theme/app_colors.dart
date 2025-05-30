@@ -24,6 +24,7 @@ class AppColors {
   static const Color accentYellow = Color(0xFFFFB300);
   static const Color accentBlue = Color(0xFF3B82F6);
   static const Color accentPurple = Color(0xFF8B5CF6);
+  
 
   // Status Colors
   static const Color success = Color(0xFF4CAF50);
@@ -89,4 +90,51 @@ class AppColors {
   static const Color shadowLight = Color(0x0A000000);
   static const Color shadowMedium = Color(0x14000000);
   static const Color shadowDark = Color(0x1F000000);
+}
+
+// Add these to your existing Colors class
+
+class DashboardColors {
+  // Risk Level Colors
+  static const Color riskHigh = Color(0xFFE53E3E);
+  static const Color riskMedium = Color(0xFFD69E2E);
+  static const Color riskLow = Color(0xFF38A169);
+  
+  // Background Colors
+  static const Color cardBackground = Color(0xFFFFFFFF);
+  static const Color screenBackground = Color(0xFFF7FAFC);
+  
+  // Safe Status Gradient
+  static const Color safeGradientStart = Color(0xFF48BB78);
+  static const Color safeGradientEnd = Color(0xFF38A169);
+  
+  // Category Colors
+  static const Color categoryBackground = Color(0xFFFED7D7);
+  static const Color categoryBorder = Color(0xFFFCA5A5);
+  static const Color categoryText = Color(0xFF742A2A);
+  static const Color categoryChipBackground = Color(0xFFFEB2B2);
+  static const Color categoryChipText = Color(0xFF9B2C2C);
+  
+  // Timeline Colors
+  static const Color timelineBackground = Color(0xFFEBF8FF);
+  static const Color timelineAccent = Color(0xFF3182CE);
+  
+  // Stats Colors
+  static const Color statOrange = Color(0xFFD69E2E);
+  static const Color statRed = Color(0xFFE53E3E);
+  
+  // Shadow Colors
+  static const Color cardShadow = Color(0x1A000000);
+  static const Color successShadow = Color(0x4D48BB78);
+  
+  // Text Colors
+  static const Color primaryText = Color(0xFF2D3748);
+  static const Color secondaryText = Color(0xFF718096);
+  static const Color whiteText = Color(0xFFFFFFFF);
+  
+  // Icon Background Colors
+  static const Color iconBackgroundRed = Color(0xFFFED7D7);
+  static const Color iconBackgroundOrange = Color(0xFFFEEBC8);
+  static const Color iconBackgroundGreen = Color(0xFFC6F6D5);
+  static const Color iconBackgroundBlue = Color(0xFFBEE3F8);
 }
