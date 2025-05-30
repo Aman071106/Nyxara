@@ -171,3 +171,5 @@ lib/
 
 what i found!!
 flutter web doesn't support native mongo_dart package
+
+BLOC->USECASES->REPO OF DOMAIN->REPO IMPL IN DATA->USE DATA SOURCE

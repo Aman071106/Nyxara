@@ -1,8 +1,8 @@
 import 'package:nyxara/domain/repositories/breach_repository.dart';
 
-class CheckBreach {
+class CheckBreachUsecase {
   final BreachRepository breachRepository;
-  CheckBreach({required this.breachRepository});
+  CheckBreachUsecase({required this.breachRepository});
   Future<bool> execute(String email) async {
     return breachRepository.checkBreach(email);
   }

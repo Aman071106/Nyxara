@@ -1,14 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:nyxara/domain/repositories/user_repository.dart'; // your data source
+import 'package:nyxara/domain/repositories/user_repository.dart';
+import 'package:nyxara/domain/usecases/signin.dart';
+import 'package:nyxara/domain/usecases/signup.dart'; // your data source
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final UserRepository userRepository;
+  final SignInUser signInUser;
+  final SignUpUser signUpUser;
 
-  AuthBloc({required this.userRepository}) : super(Unauthenticated()) {
+  AuthBloc({required this.signInUser,required this.signUpUser}) : super(Unauthenticated()) {
     on<LoginRequested>(_onLoginRequested);
     on<SignUpRequested>(_onSignUpRequested);
     on<LogoutRequested>(_onLogoutRequested);
@@ -20,7 +23,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(Logging());
     try {
-      final user = await userRepository.signInUser(event.email, event.password);
+      final user = await signInUser.execute(event.email, event.password);
       if (user != null) {
         emit(Authenticated(email: event.email));
       } else {
@@ -39,7 +42,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(SigningUp());
     try {
-      final user = await userRepository.signUpUser(event.email, event.password);
+      final user = await signUpUser.execute(event.email, event.password);
       if (user != null) {
         emit(Authenticated(email: user.email));
       } else {

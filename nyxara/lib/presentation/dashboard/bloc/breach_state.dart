@@ -12,10 +12,16 @@ final class Breached extends BreachState {
   Breached({required this.email});
 }
 
-final class CheckingAnalytics extends Breached {
-  CheckingAnalytics({required super.email});
+final class CheckingAnalytics extends BreachState {
+  final String email;
+  CheckingAnalytics({required this.email});
 }
 
-final class AnalyticsFetched extends Breached {
-  AnalyticsFetched({required super.email});
+final class AnalyticsFetched extends BreachState {
+  final String email;
+  final AnalyticsEntity analyticsEntity;
+  AnalyticsFetched({required this.email, required this.analyticsEntity});
+}
+
+final class AnalyticsFetchedError extends BreachState {
 }

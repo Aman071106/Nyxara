@@ -158,8 +158,8 @@ class _AuthScreenState extends State<AuthScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.gradientStart.withOpacity(0.05),
-            AppColors.gradientEnd.withOpacity(0.1),
+            AppColors.gradientStart.withValues(alpha:0.05),
+            AppColors.gradientEnd.withValues(alpha:0.1),
             AppColors.background,
           ],
           stops: const [0.0, 0.5, 1.0],
@@ -190,13 +190,13 @@ class _AuthScreenState extends State<AuthScreen>
                           AppColors.accentBlue,
                           AppColors.accentPurple,
                           AppColors.primary,
-                        ][index % 3].withOpacity(0.1),
+                        ][index % 3].withValues(alpha:0.1),
                         border: Border.all(
                           color: [
                             AppColors.accentBlue,
                             AppColors.accentPurple,
                             AppColors.primary,
-                          ][index % 3].withOpacity(0.2),
+                          ][index % 3].withValues(alpha:0.2),
                           width: 1,
                         ),
                       ),
@@ -304,7 +304,7 @@ class _AuthScreenState extends State<AuthScreen>
             borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
             boxShadow: [
               BoxShadow(
-                color: AppColors.primary.withOpacity(0.3),
+                color: AppColors.primary.withValues(alpha:0.3),
                 blurRadius: AppDimensions.shadowBlur,
                 offset: const Offset(0, 4),
               ),
@@ -559,7 +559,7 @@ class _AuthScreenState extends State<AuthScreen>
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.textOnPrimary,
         elevation: 8,
-        shadowColor: AppColors.primary.withOpacity(0.3),
+        shadowColor: AppColors.primary.withValues(alpha:0.3),
         minimumSize: const Size(
           double.infinity,
           AppDimensions.buttonHeightLarge,
