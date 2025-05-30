@@ -113,4 +113,73 @@ class AppTextStyles {
     letterSpacing: 0.5,
     color: AppColors.textTertiary,
   );
+
+  // Add these text styles to your existing AppTextStyles class
+
+  // Auth Screen Specific Styles
+  static const TextStyle authTitle = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.w700,
+    letterSpacing: -0.5,
+    height: 1.2,
+  );
+
+  static const TextStyle authSubtitle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    height: 1.4,
+  );
+
+  static const TextStyle authInputLabel = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    height: 1.3,
+  );
+
+  static const TextStyle authInputText = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    height: 1.4,
+  );
+
+  static const TextStyle authInputHint = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    height: 1.4,
+  );
+
+  static const TextStyle authButtonText = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.5,
+    height: 1.2,
+  );
+
+  static const TextStyle authLinkText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    height: 1.3,
+    decoration: TextDecoration.underline,
+  );
+
+  static const TextStyle authSocialButtonText = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w500,
+    height: 1.3,
+  );
+
+  static const TextStyle authToggleText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    height: 1.3,
+  );
+
+  // Add these to your existing AppTextStyles class:
+
+
+  static const TextStyle h5 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    height: 1.3,
+  );
 }

@@ -36,4 +36,70 @@ class AppDimensions {
 
   // Shadow
   static const double shadowBlur = 12.0;
+
+
+
+  // Auth Screen Specific Dimensions
+  static const double authCardMaxWidth = 420.0;
+  static const double authCardPadding = 32.0;
+  static const double authLogoSize = 64.0;
+  static const double authInputHeight = 56.0;
+  static const double authButtonHeight = 52.0;
+  static const double authSocialButtonHeight = 48.0;
+  static const double authSpacingXL = 32.0;
+  static const double authSpacingL = 24.0;
+  static const double authSpacingM = 16.0;
+  static const double authSpacingS = 12.0;
+  
+  // Enhanced Icon Sizes
+  static const double iconXS = 14.0;
+
+  static const double iconXXL = 32.0;
+  
+  // Enhanced Border Radius
+  static const double radiusXS = 4.0;
+
+  static const double radiusRound = 24.0;
+  
+  // Enhanced Padding
+  static const double paddingXXS = 2.0;
+
+  static const double paddingXXXL = 32.0;
+  
+  // Enhanced Shadows
+  static const double shadowBlurLight = 4.0;
+  static const double shadowBlurMedium = 12.0;
+  static const double shadowBlurHeavy = 24.0;
+  static const double shadowOffset = 2.0;
+  static const double shadowSpread = -2.0;
+  
+  // Notification Badge
+  static const double notificationBadgeSize = 16.0;
+  static const double notificationBadgeMinSize = 8.0;
+  
+  // Card Elevations
+  static const double elevationLow = 2.0;
+  static const double elevationMedium = 4.0;
+  static const double elevationHigh = 8.0;
+  static const double elevationXHigh = 16.0;
+  
+  // Form Field Dimensions
+  static const double inputFieldHeight = 48.0;
+  static const double inputFieldBorderWidth = 1.0;
+  static const double inputFieldFocusBorderWidth = 2.0;
+  
+  // Button Dimensions
+  static const double buttonHeightSmall = 36.0;
+  static const double buttonMinWidth = 88.0;
+  
+  // Divider
+  static const double dividerThickness = 1.0;
+  static const double dividerIndent = 16.0;
+  
+  // Modal and Dialog
+  static const double modalBorderRadius = 16.0;
+  static const double dialogMaxWidth = 400.0;
+  static const double dialogPadding = 24.0;
+  
+
 }
