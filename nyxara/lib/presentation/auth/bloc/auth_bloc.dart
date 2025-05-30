@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:nyxara/domain/repositories/user_repository.dart';
 import 'package:nyxara/domain/usecases/signin.dart';
 import 'package:nyxara/domain/usecases/signup.dart'; // your data source
 

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -52,11 +51,8 @@ class _DashBoardScreen extends State<DashBoardScreen> {
             );
           } else if (state is AnalyticsFetched) {
             final entity = state.analyticsEntity;
-            final xposedText =
-                (entity.xposedData.isNotEmpty &&
-                        entity.xposedData[0].children.isNotEmpty)
-                    ? entity.xposedData[0].children[0]
-                    : "No data available";
+            print("Websites in screen");
+            print(entity.websites);
 
             return Padding(
               padding: const EdgeInsets.all(16.0),
@@ -102,6 +98,16 @@ class _DashBoardScreen extends State<DashBoardScreen> {
                                   .toString(),
                             ),
                           ),
+                    ),
+
+                    //website links through which data leaked
+                    Text("Websites"),
+                    ListView.builder(
+                      itemCount: entity.websites.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, i) {
+                        return ListTile(title: Text(entity.websites[i]));
+                      },
                     ),
                   ],
                 ),
