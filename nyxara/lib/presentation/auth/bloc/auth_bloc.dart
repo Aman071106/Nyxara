@@ -1,14 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:nyxara/data/datasources/user_datasource.dart'; // your data source
+import 'package:nyxara/domain/repositories/user_repository.dart'; // your data source
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final NyxaraDB nyxaraDB;
+  final UserRepository userRepository;
 
-  AuthBloc({required this.nyxaraDB}) : super(Unauthenticated()) {
+  AuthBloc({required this.userRepository}) : super(Unauthenticated()) {
     on<LoginRequested>(_onLoginRequested);
     on<SignUpRequested>(_onSignUpRequested);
     on<LogoutRequested>(_onLogoutRequested);
@@ -20,7 +20,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(Logging());
     try {
-      final user = await nyxaraDB.checkUser(event.email, event.password);
+      final user = await userRepository.signInUser(event.email, event.password);
       if (user != null) {
         emit(Authenticated(email: event.email));
       } else {
@@ -39,7 +39,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(SigningUp());
     try {
-      final user = await nyxaraDB.createUser(event.email, event.password);
+      final user = await userRepository.signUpUser(event.email, event.password);
       if (user != null) {
         emit(Authenticated(email: user.email));
       } else {
