@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:nyxara/data/models/advice_response_model.dart';
 import 'package:nyxara/domain/entities/advice_response_entity.dart';
 import 'package:nyxara/domain/entities/breach_analytics_entity.dart';
 import 'package:nyxara/domain/usecases/check_breach.dart';

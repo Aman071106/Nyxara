@@ -100,6 +100,92 @@ class AppDimensions {
   static const double modalBorderRadius = 16.0;
   static const double dialogMaxWidth = 400.0;
   static const double dialogPadding = 24.0;
+
+
+   // Spacing
+  static const double spaceXS = 4.0;
+  static const double spaceSM = 8.0;
+  static const double spaceMD = 12.0;
+  static const double spaceLG = 16.0;
+  static const double spaceXL = 20.0;
+  static const double space2XL = 24.0;
+  static const double space3XL = 32.0;
+  static const double space4XL = 40.0;
+  static const double space5XL = 48.0;
+  static const double space6XL = 64.0;
+
+  // Border Radius
+  static const double radiusSM = 8.0;
+  static const double radiusMD = 12.0;
+  static const double radiusLG = 16.0;
+  static const double radiusFull = 100.0;
+
+  // Cyber-themed specific radii
+  static const double radiusCyber = 6.0;
+  static const double radiusHex = 8.0;
+  static const double radiusTerminal = 4.0;
+
+  // Container Sizes
+  static const double containerSM = 200.0;
+  static const double containerMD = 300.0;
+  static const double containerLG = 400.0;
+  static const double containerXL = 500.0;
+
+  // Card dimensions
+  static const double cardHeight = 120.0;
+  static const double cardHeightLG = 180.0;
+  static const double cardHeightXL = 240.0;
+
+  // Chart dimensions
+  static const double chartHeight = 250.0;
+  static const double chartHeightLG = 300.0;
+  static const double chartHeightXL = 350.0;
+
+  // Icon Sizes
+  static const double iconSM = 16.0;
+  static const double iconMD = 20.0;
+  static const double iconLG = 24.0;
+  static const double icon2XL = 40.0;
+  static const double icon3XL = 48.0;
+
+  // Cyber-themed icon sizes
+  static const double iconCyber = 28.0;
+  static const double iconShield = 36.0;
+
+  // Button dimensions
+  static const double buttonHeightSM = 32.0;
+  static const double buttonHeightMD = 40.0;
+  static const double buttonHeightLG = 48.0;
+  static const double buttonHeightXL = 56.0;
+
+  // Border widths
+  static const double borderThin = 0.5;
+  static const double borderNormal = 1.0;
+  static const double borderThick = 2.0;
+  static const double borderCyber = 1.5;
+
+  // Elevation
+  static const double elevationMD = 4.0;
+  static const double elevationCyber = 6.0;
+
+  // Animation durations (in milliseconds)
+  static const int animationFast = 200;
+  static const int animationNormal = 300;
+  static const int animationSlow = 500;
+  static const int animationCyber = 400;
+
+  // Grid spacing
+  static const double gridSpacing = 16.0;
+  static const double gridSpacingLG = 24.0;
+
+  // Cyber grid pattern
+  static const double cyberGridSize = 20.0;
+  static const double cyberLineWidth = 0.8;
+
+  // Screen breakpoints
+  static const double mobileBreakpoint = 768.0;
+  static const double tabletBreakpoint = 1024.0;
+  static const double desktopBreakpoint = 1440.0;
   
 
 }

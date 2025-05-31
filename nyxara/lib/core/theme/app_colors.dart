@@ -90,6 +90,130 @@ class AppColors {
   static const Color shadowLight = Color(0x0A000000);
   static const Color shadowMedium = Color(0x14000000);
   static const Color shadowDark = Color(0x1F000000);
+
+
+  // Secondary Colors
+  static const Color secondary = Color(0xFF6C63FF); // Electric purple
+  static const Color secondaryLight = Color(0xFF9C93FF);
+  static const Color secondaryDark = Color(0xFF4D44CC);
+
+  // Accent Colors
+  static const Color accent = Color(0xFFFF3366); // Cyber red
+
+  // Background Colors
+  static const Color backgroundSecondary = Color(0xFF111118);
+  static const Color backgroundTertiary = Color(0xFF1A1A22);
+  static const Color surfaceVariant = Color(0xFF2A2A3A);
+
+  // Card and Container Colors
+  static const Color cardBackgroundHover = Color(0xFF202030);
+  static const Color containerBackground = Color(0xFF141420);
+  static const Color containerBorder = Color(0xFF2D2D40);
+
+  // Text Colors
+
+  static const Color textHint = Color(0xFF606070);
+  static const Color textDisabled = Color(0xFF404050);
+
+  // Status Colors
+  static const Color successDark = Color(0xFF00CC6A);
+  static const Color warningDark = Color(0xFFCC8800);
+  static const Color errorDark = Color(0xFFCC1235);
+  static const Color infoDark = Color(0xFF0099CC);
+
+  // Risk Level Colors
+  static const Color riskCritical = Color(0xFFFF0033);
+  static const Color riskHigh = Color(0xFFFF6600);
+  static const Color riskMedium = Color(0xFFFFCC00);
+  static const Color riskLow = Color(0xFF00FF66);
+  static const Color riskSafe = Color(0xFF00DDAA);
+
+  // Special Effects
+  static const Color glow = Color(0xFF00D4AA);
+  static const Color glowRed = Color(0xFFFF3366);
+  static const Color glowBlue = Color(0xFF1E90FF);
+  static const Color glowGreen = Color(0xFF39FF14);
+  static const Color glowPurple = Color(0xFFBB86FC);
+
+  // Cyber Grid and Lines
+  static const Color gridLine = Color(0xFF2A2A3A);
+  static const Color gridLineActive = Color(0xFF00D4AA);
+  static const Color borderLine = Color(0xFF3A3A4A);
+  static const Color borderActive = Color(0xFF00D4AA);
+
+  // Shimmer Colors
+  static const Color shimmerBase = Color(0xFF1A1A22);
+  static const Color shimmerHighlight = Color(0xFF2A2A3A);
+
+  // Chart Colors
+  static const List<Color> chartColors = [
+    Color(0xFF00D4AA), // Primary
+    Color(0xFF6C63FF), // Secondary
+    Color(0xFFFF3366), // Accent
+    Color(0xFF1E90FF), // Blue
+    Color(0xFF39FF14), // Green
+    Color(0xFFFF6B35), // Orange
+    Color(0xFFBB86FC), // Purple
+    Color(0xFFFFAA00), // Amber
+  ];
+
+  // Gradient Colors
+
+  static const LinearGradient backgroundGradient = LinearGradient(
+    colors: [Color(0xFF0A0A0F), Color(0xFF111118), Color(0xFF1A1A22)],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  static const LinearGradient cardGradient = LinearGradient(
+    colors: [Color(0xFF181825), Color(0xFF202030)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient cyberGradient = LinearGradient(
+    colors: [Color(0xFF00D4AA), Color(0xFF1E90FF), Color(0xFF6C63FF)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const RadialGradient glowGradient = RadialGradient(
+    colors: [Color(0x4400D4AA), Colors.transparent],
+    radius: 0.8,
+  );
+
+
+
+  // Cyber-themed helper methods
+  static Color withCyberGlow(Color color, {double opacity = 0.3}) {
+    return color.withValues(alpha:opacity);
+  }
+
+  static Color getBrightnessAdaptiveColor(Brightness brightness) {
+    return brightness == Brightness.dark ? textPrimary : Color(0xFF000000);
+  }
+
+  static Color getRiskColor(String riskLevel) {
+    switch (riskLevel.toLowerCase()) {
+      case 'critical':
+        return riskCritical;
+      case 'high':
+        return riskHigh;
+      case 'medium':
+        return riskMedium;
+      case 'low':
+        return riskLow;
+      case 'safe':
+        return riskSafe;
+      default:
+        return textSecondary;
+    }
+  }
+
+  static List<Color> getChartColorScheme(int count) {
+    return List.generate(count, (index) => chartColors[index % chartColors.length]);
+  }
+
 }
 
 // Add these to your existing Colors class
@@ -137,4 +261,7 @@ class DashboardColors {
   static const Color iconBackgroundOrange = Color(0xFFFEEBC8);
   static const Color iconBackgroundGreen = Color(0xFFC6F6D5);
   static const Color iconBackgroundBlue = Color(0xFFBEE3F8);
+
+
+  
 }
