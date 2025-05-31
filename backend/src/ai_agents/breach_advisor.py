@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from groq import Groq
 from dotenv import load_dotenv
 import os
@@ -13,6 +14,7 @@ if not GROQ_API_KEY:
 client = Groq(api_key=GROQ_API_KEY)
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/api/analyze-breach', methods=['POST'])
 def analyze_breach():
