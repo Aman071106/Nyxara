@@ -20,6 +20,8 @@ dependencies:
   o3d: ^3.1.3
   syncfusion_flutter_charts: ^29.2.7
   shared_preferences:
+  emailjs: ^4.0.0
+  fluttertoast:
 dev_dependencies:
   flutter_test:
     sdk: flutter

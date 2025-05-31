@@ -45,4 +45,8 @@ class UserRepositoryImpl implements UserRepository {
   Future<String> getSavedEmail() async {
     return (await shared_auth.getEmail())!;
   }
+  @override
+  Future<int?> SendOTP(String email) async{
+    return await authDatabase.SendOtp(email);
+  }
 }

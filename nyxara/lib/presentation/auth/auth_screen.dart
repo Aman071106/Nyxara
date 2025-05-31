@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nyxara/core/router/routes_consts.dart';
 import 'package:nyxara/core/theme/app_colors.dart';
@@ -20,6 +21,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
   late AnimationController _fadeController;
   late AnimationController _slideController;
   late AnimationController _shakeController;
+  late TextEditingController _otpController;
 
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
@@ -43,7 +45,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
 
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-
+    _otpController = TextEditingController();
     _fadeController = AnimationController(
       duration: const Duration(milliseconds: 1000),
       vsync: this,
@@ -85,6 +87,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
     _fadeController.dispose();
     _slideController.dispose();
     _shakeController.dispose();
+    _otpController.dispose();
     super.dispose();
   }
 
@@ -126,14 +129,63 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                     ),
                   );
                 }
-                if(state is NotSignedUp)
-                {
+                if (state is NotSignedUp) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        "Unsuccessful signup attempt!!",
-                      ),
-                    ),
+                    SnackBar(content: Text("Unsuccessful signup attempt!!")),
+                  );
+                }
+                if (state is SendingOTPstate) {
+                  Fluttertoast.showToast(
+                    toastLength: Toast.LENGTH_LONG,
+                    msg: "OTP is being send to ${state.email} ...",
+                  );
+                }
+                if (state is OTPsentState) {
+                  Fluttertoast.showToast(
+                    toastLength: Toast.LENGTH_LONG,
+                    msg: "OTP-Sent Successfully",
+                  );
+
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (_) {
+                      return AlertDialog(
+                        title: Text("Enter OTP"),
+                        content: TextField(
+                          controller: _otpController,
+                          keyboardType: TextInputType.number,
+                          maxLength: 6,
+                          decoration: InputDecoration(
+                            hintText: "Enter 6-digit OTP",
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              final otp = _otpController.text.trim();
+                              if (otp.length == 6) {
+                                if (otp == state.otp.toString()) {
+                                  context.read<AuthBloc>().add(
+                                    SignUpRequested(
+                                      email: _emailController.text.trim(),
+                                      password: _passwordController.text.trim(),
+                                    ),
+                                  );
+                                  Fluttertoast.showToast(
+                                    msg: "OTP is correct!",
+                                  );
+                                } else {
+                                  Fluttertoast.showToast(msg: "Invalid OTP!");
+                                }
+                                Navigator.of(context).pop();
+                              }
+                            },
+                            child: Text("Verify"),
+                          ),
+                        ],
+                      );
+                    },
                   );
                 }
               },
@@ -141,7 +193,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                 if (state is Logging || state is SigningUp) {
                   return _buildLoadingState();
                 }
-
+                if (state is OTPsentState) {}
                 return FadeTransition(
                   opacity: _fadeAnimation,
                   child: SlideTransition(
@@ -568,9 +620,8 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
               LoginRequested(email: email, password: password),
             );
           } else {
-            context.read<AuthBloc>().add(
-              SignUpRequested(email: email, password: password),
-            );
+            //otp validation
+            context.read<AuthBloc>().add(SendOTPevent(email: email));
           }
         }
       },

@@ -194,4 +194,11 @@ https://pub.dev/packages/o3d
 
 //bugs:
 ->api calls after switching tabs
-->
+
+
+
+Using mailer in flutter:
+We need to go to myaccounts.google.com/apppasswords
+and generate a apppassword for app
+
+then send otp to emails via smtp protocol

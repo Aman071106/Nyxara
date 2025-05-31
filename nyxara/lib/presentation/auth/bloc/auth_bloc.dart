@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:nyxara/domain/usecases/check_logged_in.dart';
 import 'package:nyxara/domain/usecases/getEmail.dart';
 import 'package:nyxara/domain/usecases/logout_usecase.dart';
+import 'package:nyxara/domain/usecases/send_otp.dart';
 import 'package:nyxara/domain/usecases/signin.dart';
 import 'package:nyxara/domain/usecases/signup.dart';
 
@@ -17,6 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final CheckLoggedIn checkLoggedIn;
   final LogoutUsecase logoutUsecase;
   final Getemail getemail;
+  final SendOtp sendOtp;
 
   AuthBloc({
     required this.signInUser,
@@ -24,11 +26,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required this.checkLoggedIn,
     required this.logoutUsecase,
     required this.getemail,
+    required this.sendOtp
   }) : super(AppStartState()) {
     on<LoginRequested>(_onLoginRequested);
     on<SignUpRequested>(_onSignUpRequested);
     on<LogoutRequested>(_onLogoutRequested);
     on<AppStartEvent>(_appStart);
+    on<SendOTPevent>(_sendotp);
   }
 
   Future<void> _onLoginRequested(
@@ -105,4 +109,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(Unauthenticated());
     }
   }
+
+  Future<void> _sendotp(SendOTPevent event, Emitter<AuthState> emit) async {
+    emit(SendingOTPstate(email: event.email));
+
+    int? otp = await sendOtp.execute(event.email);
+    if (otp != null) {
+      emit(OTPsentState(otp: otp));
+    } else {
+      emit(NotSignedUp());
+    }
+  }
+  
 }

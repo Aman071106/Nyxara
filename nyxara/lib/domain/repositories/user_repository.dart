@@ -6,4 +6,5 @@ abstract class UserRepository {
   Future<bool> isLoggedIn();
   Future<void> logout();
   Future<String> getSavedEmail();
+  Future<int?> SendOTP(String email);
 }
