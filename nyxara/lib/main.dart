@@ -6,6 +6,7 @@ import 'package:nyxara/data/datasources/user_datasource.dart';
 import 'package:nyxara/data/repositories_impl/breach_repo_impl.dart';
 import 'package:nyxara/data/repositories_impl/user_repo_impl.dart';
 import 'package:nyxara/domain/usecases/check_breach.dart';
+import 'package:nyxara/domain/usecases/fetch_advice.dart';
 import 'package:nyxara/domain/usecases/fetch_analytics.dart';
 import 'package:nyxara/domain/usecases/signin.dart';
 import 'package:nyxara/domain/usecases/signup.dart';
@@ -44,6 +45,7 @@ class NyxaraApp extends StatelessWidget {
                 fetchAnalyticsUseCase: FetchAnalytics(
                   breachRepository: breachRepository,
                 ),
+                fetchAdvice: FetchAdvice(breachRepository: breachRepository),
               ),
         ),
       ],

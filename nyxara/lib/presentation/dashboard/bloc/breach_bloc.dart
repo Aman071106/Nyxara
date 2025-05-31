@@ -3,8 +3,11 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:nyxara/data/models/advice_response_model.dart';
+import 'package:nyxara/domain/entities/advice_response_entity.dart';
 import 'package:nyxara/domain/entities/breach_analytics_entity.dart';
 import 'package:nyxara/domain/usecases/check_breach.dart';
+import 'package:nyxara/domain/usecases/fetch_advice.dart';
 import 'package:nyxara/domain/usecases/fetch_analytics.dart';
 
 part 'breach_event.dart';
@@ -13,10 +16,12 @@ part 'breach_state.dart';
 class BreachBloc extends Bloc<BreachEvent, BreachState> {
   final CheckBreachUsecase checkBreachUseCase;
   final FetchAnalytics fetchAnalyticsUseCase;
+  final FetchAdvice fetchAdvice;
 
   BreachBloc({
     required this.checkBreachUseCase,
     required this.fetchAnalyticsUseCase,
+    required this.fetchAdvice
   }) : super(NotBreached()) {
     on<CheckBreach>(_onCheckBreach);
     on<CheckBreachAnalytics>(_onCheckAnalytics);
@@ -46,9 +51,19 @@ class BreachBloc extends Bloc<BreachEvent, BreachState> {
   ) async {
     emit(CheckingAnalytics(email: event.email));
     try {
-      final AnalyticsEntity? entity = await fetchAnalyticsUseCase.execute(event.email);
+      final AnalyticsEntity? entity = await fetchAnalyticsUseCase.execute(
+        event.email,
+      );
+      final AdviceResponseEntity adviceResponseEntity =
+          (await fetchAdvice.execute())!;
       if (entity != null) {
-        emit(AnalyticsFetched(email: event.email, analyticsEntity: entity));
+        emit(
+          AnalyticsFetched(
+            email: event.email,
+            analyticsEntity: entity,
+            adviceResponseEntity: adviceResponseEntity,
+          ),
+        );
       } else {
         emit(AnalyticsFetchedError());
         log("Error fetching analytics: entity null");

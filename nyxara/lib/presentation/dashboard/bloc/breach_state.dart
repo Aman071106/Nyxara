@@ -20,8 +20,12 @@ final class CheckingAnalytics extends BreachState {
 final class AnalyticsFetched extends BreachState {
   final String email;
   final AnalyticsEntity analyticsEntity;
-  AnalyticsFetched({required this.email, required this.analyticsEntity});
+  final AdviceResponseEntity adviceResponseEntity;
+  AnalyticsFetched({
+    required this.email,
+    required this.analyticsEntity,
+    required this.adviceResponseEntity,
+  });
 }
 
-final class AnalyticsFetchedError extends BreachState {
-}
+final class AnalyticsFetchedError extends BreachState {}

@@ -71,7 +71,6 @@ class _DashBoardScreen extends State<DashBoardScreen> {
                       (category) => Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          //major cateogries of breach
                           ...category.children.map(
                             (child) => Text("   - $child"),
                           ),
@@ -81,33 +80,37 @@ class _DashBoardScreen extends State<DashBoardScreen> {
                     const SizedBox(height: 12),
 
                     Text("📅 Year-wise Breach Details:"),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: entity.yearwiseDetails[0].length,
-                      itemBuilder:
-                          (context, i) => ListTile(
-                            title: Text(
-                              entity.yearwiseDetails[0].keys.toList()[i],
-                            ), //year
-                            subtitle: Text(
-                              entity
-                                  .yearwiseDetails[0][entity
-                                      .yearwiseDetails[0]
-                                      .keys
-                                      .toList()[i]]
-                                  .toString(),
-                            ),
-                          ),
+                    ...entity.yearwiseDetails[0].entries.map(
+                      (entry) => ListTile(
+                        title: Text(entry.key),
+                        subtitle: Text(entry.value.toString()),
+                      ),
                     ),
 
-                    //website links through which data leaked
                     Text("Websites"),
-                    ListView.builder(
-                      itemCount: entity.websites.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, i) {
-                        return ListTile(title: Text(entity.websites[i]));
-                      },
+                    ...entity.websites.map(
+                      (site) => ListTile(title: Text(site)),
+                    ),
+
+                    const SizedBox(height: 16),
+                    Divider(),
+                    Text("💡 Advice:"),
+                    ...state.adviceResponseEntity.advices.map(
+                      (a) => Text("• $a"),
+                    ),
+
+                    const SizedBox(height: 16),
+                    Text("📊 Breach Categories:"),
+                    Wrap(
+                      spacing: 10,
+                      children: List.generate(
+                        state.adviceResponseEntity.pieLabels.length,
+                        (index) => Chip(
+                          label: Text(
+                            "${state.adviceResponseEntity.pieLabels[index]}: ${state.adviceResponseEntity.piePercentage[index]}%",
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
