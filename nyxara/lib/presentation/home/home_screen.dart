@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nyxara/core/router/routes_consts.dart';
 import 'package:nyxara/core/theme/app_colors.dart';
 import 'package:nyxara/core/theme/app_dimensions.dart';
 import 'package:nyxara/core/theme/app_text_styles.dart';
+import 'package:nyxara/presentation/auth/bloc/auth_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,11 +22,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
   late Animation<double> _pulseAnimation;
+  bool authState = false;
 
   @override
   void initState() {
     super.initState();
-
+    setState(() {
+      authState = context.read<AuthBloc>().state is Authenticated;
+    });
     _fadeController = AnimationController(
       duration: const Duration(milliseconds: 1200),
       vsync: this,
@@ -70,66 +75,77 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: Stack(
-        children: [
-          // Animated background gradient overlay
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  AppColors.gradientStart.withValues(alpha: 0.1),
-                  AppColors.gradientEnd.withValues(alpha: 0.05),
-                ],
+    return BlocConsumer<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is Authenticated) {
+          setState(() {
+            authState = true;
+          });
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: AppColors.background,
+          body: Stack(
+            children: [
+              // Animated background gradient overlay
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.gradientStart.withValues(alpha: 0.1),
+                      AppColors.gradientEnd.withValues(alpha: 0.05),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
 
-          // Floating geometric shapes
-          _buildFloatingShapes(),
+              // Floating geometric shapes
+              _buildFloatingShapes(),
 
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(AppDimensions.paddingL),
-                child: FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: SlideTransition(
-                    position: _slideAnimation,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: AppDimensions.paddingXXL),
+              SafeArea(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppDimensions.paddingL),
+                    child: FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: SlideTransition(
+                        position: _slideAnimation,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: AppDimensions.paddingXXL),
 
-                        // Hero section
-                        _buildHeroSection(),
+                            // Hero section
+                            _buildHeroSection(),
 
-                        const SizedBox(height: AppDimensions.paddingXXL),
+                            const SizedBox(height: AppDimensions.paddingXXL),
 
-                        // Security metrics dashboard
-                        _buildSecurityMetrics(),
+                            // Security metrics dashboard
+                            _buildSecurityMetrics(),
 
-                        const SizedBox(height: AppDimensions.paddingXL),
+                            const SizedBox(height: AppDimensions.paddingXL),
 
-                        // Feature cards
-                        _buildFeatureGrid(),
+                            // Feature cards
+                            _buildFeatureGrid(),
 
-                        const SizedBox(height: AppDimensions.paddingXXL),
+                            const SizedBox(height: AppDimensions.paddingXXL),
 
-                        // CTA section
-                        _buildCtaSection(),
-                      ],
+                            // CTA section
+                            _buildCtaSection(),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -546,7 +562,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Get Started Now',
+                          !authState == true
+                              ? 'Get Started Now'
+                              : 'Move to DashBoard',
                           style: AppTextStyles.buttonLarge,
                         ),
                         const SizedBox(width: AppDimensions.paddingS),

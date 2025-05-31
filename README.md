@@ -179,3 +179,19 @@ BLOC->USECASES->REPO OF DOMAIN->REPO IMPL IN DATA->USE DATA SOURCE
 o3d package
 https://www.youtube.com/watch?v=-W45PQ__SAk&t=203s
 https://pub.dev/packages/o3d
+
+
+
+
+//vault backend decision:
+->getall method
+->update value for a specific key
+->delete item by key
+->put new item in db by key
+
+//update password in profile also required along with google auth
+
+
+//bugs:
+->api calls after switching tabs
+->

@@ -35,7 +35,7 @@ class BreachDatasource {
       if (response.statusCode == 200) {
         final jsonMap = jsonDecode(response.body);
         jsonBody = response.body;
-        fetchAdvice();
+        // fetchAdvice();
         return AnalyticsModel.fromJson(jsonMap);
       } else {
         print(

@@ -117,6 +117,25 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                 if (state is Authenticated) {
                   context.goNamed(NyxaraRoutes.dashboardRoute);
                 }
+                if (state is SignedUp) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "Account Created In Nyxara Database Successfully!",
+                      ),
+                    ),
+                  );
+                }
+                if(state is NotSignedUp)
+                {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "Unsuccessful signup attempt!!",
+                      ),
+                    ),
+                  );
+                }
               },
               builder: (context, state) {
                 if (state is Logging || state is SigningUp) {
