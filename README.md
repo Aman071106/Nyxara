@@ -194,8 +194,10 @@ https://pub.dev/packages/o3d
 
 //bugs:
 ->api calls after switching tabs
-
-
+->backend vault
+->otp ui
+->code cleaning
+->firebase deployment
 
 Using mailer in flutter:
 We need to go to myaccounts.google.com/apppasswords

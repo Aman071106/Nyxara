@@ -22,6 +22,9 @@ dependencies:
   shared_preferences:
   emailjs: ^4.0.0
   fluttertoast:
+  supabase_flutter: ^2.9.0
+  cryptography: 
+  cryptography_flutter: 
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -20,7 +20,7 @@ class BreachBloc extends Bloc<BreachEvent, BreachState> {
   BreachBloc({
     required this.checkBreachUseCase,
     required this.fetchAnalyticsUseCase,
-    required this.fetchAdvice
+    required this.fetchAdvice,
   }) : super(NotBreached()) {
     on<CheckBreach>(_onCheckBreach);
     on<CheckBreachAnalytics>(_onCheckAnalytics);
@@ -65,11 +65,11 @@ class BreachBloc extends Bloc<BreachEvent, BreachState> {
         );
       } else {
         emit(AnalyticsFetchedError());
-        log("Error fetching analytics: entity null");
+        // log("Error fetching analytics: entity null");
       }
     } catch (e) {
       emit(AnalyticsFetchedError());
-      log("Error fetching analytics: ${e.toString()}");
+      // log("Error fetching analytics: ${e.toString()}");
     }
   }
 }

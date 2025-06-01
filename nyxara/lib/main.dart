@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nyxara/core/router/router_config.dart';
 import 'package:nyxara/data/datasources/auth_shared_preference_datasource.dart';
 import 'package:nyxara/data/datasources/user_datasource.dart';
+import 'package:nyxara/data/datasources/vault_datasource.dart';
 import 'package:nyxara/data/repositories_impl/breach_repo_impl.dart';
 import 'package:nyxara/data/repositories_impl/user_repo_impl.dart';
 import 'package:nyxara/domain/usecases/check_breach.dart';
@@ -20,10 +21,27 @@ import 'package:nyxara/domain/usecases/signin.dart';
 import 'package:nyxara/domain/usecases/signup.dart';
 import 'package:nyxara/presentation/auth/bloc/auth_bloc.dart';
 import 'package:nyxara/presentation/dashboard/bloc/breach_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
-  await dotenv.load(fileName: '.env');
+  try {
+    await dotenv.load(fileName: '.env');
+    String postgreurl = await dotenv.env['POSTGRE_URL']!;
+    String annonKey = await dotenv.env['ANNON_KEY']!;
+    List<int> nonce =
+        dotenv.env['NONCE']!
+            .split(',')
+            .map((entry) => int.parse(entry.trim()))
+            .toList();
+    // String tableName = await dotenv.env['TABLE_NAME']!;
+    // String verificationPass = await dotenv.env['VERIFICATION_PASS']!;
+    // await Supabase.initialize(url: postgreurl, anonKey: annonKey);
+
   
+  } catch (e) {
+    log("DOTENV ERROR!!");
+  }
+
   runApp(NyxaraApp());
 }
 

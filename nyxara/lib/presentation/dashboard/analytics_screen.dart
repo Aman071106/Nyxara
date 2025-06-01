@@ -1095,7 +1095,6 @@ class _DashBoardScreen extends State<DashBoardScreen>
             context.read<BreachBloc>().add(CheckBreach(email: authState.email));
           }
         }),
-        
       ],
     );
   }
