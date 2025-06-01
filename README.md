@@ -193,10 +193,12 @@ https://pub.dev/packages/o3d
 
 
 //bugs:
-->api calls after switching tabs
+->api calls after switching tabs(shared_pref)
 ->backend vault
 ->otp ui
 ->code cleaning
+->widgets folder
+->entity-model conversion in vault
 ->firebase deployment
 
 Using mailer in flutter:
