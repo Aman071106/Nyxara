@@ -8,7 +8,8 @@ class UpdateVaultitemUsecase {
     String title,
     String key,
     String masterKey,
+    String newValue
   )async {
-    return vaultRepository.deleteItem(email, title, key, masterKey);
+    return vaultRepository.updateItem(email, title, key, masterKey,newValue);
   }
 }

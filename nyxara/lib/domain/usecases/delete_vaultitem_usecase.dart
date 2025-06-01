@@ -7,9 +7,8 @@ class DeleteVaultitemUsecase {
     String email,
     String title,
     String key,
-    String value,
     String masterKey,
   ) async {
-    return vaultRepository.putItem(email, title, key, value, masterKey);
+    return vaultRepository.deleteItem(email, title, key, masterKey);
   }
 }

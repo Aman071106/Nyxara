@@ -7,9 +7,10 @@ class PutVaultitemUsecase {
     String email,
     String title,
     String key,
+    String value,
+
     String masterKey,
-    String newValue,
   ) async {
-    return vaultRepository.updateItem(email, title, key, masterKey, newValue);
+    return vaultRepository.putItem(email, title, key, value, masterKey);
   }
 }

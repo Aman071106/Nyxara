@@ -200,6 +200,7 @@ https://pub.dev/packages/o3d
 ->widgets folder
 ->entity-model conversion in vault
 ->firebase deployment
+->check authstate should be directly passed in bloc or taken from ui layer
 
 Using mailer in flutter:
 We need to go to myaccounts.google.com/apppasswords
