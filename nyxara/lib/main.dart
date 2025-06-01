@@ -33,11 +33,11 @@ void main() async {
             .split(',')
             .map((entry) => int.parse(entry.trim()))
             .toList();
-    // String tableName = await dotenv.env['TABLE_NAME']!;
-    // String verificationPass = await dotenv.env['VERIFICATION_PASS']!;
-    // await Supabase.initialize(url: postgreurl, anonKey: annonKey);
+    String tableName = await dotenv.env['TABLE_NAME']!;
+    String verificationPass = await dotenv.env['VERIFICATION_PASS']!;
+    await Supabase.initialize(url: postgreurl, anonKey: annonKey);
 
-  
+    
   } catch (e) {
     log("DOTENV ERROR!!");
   }

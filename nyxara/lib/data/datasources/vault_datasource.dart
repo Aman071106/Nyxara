@@ -63,6 +63,19 @@ class VaultDatasource {
     try {
       bool iskeycorrect = await verifyKey(masterKey, email);
       if (!iskeycorrect) return false;
+      // Check for duplicate
+    final existing = await Supabase.instance.client
+        .from(tableName)
+        .select()
+        .eq('email', email)
+        .eq('title', title)
+        .eq('key', key)
+        .maybeSingle();
+
+    if (existing != null) {
+      log("Duplicate entry exists: $existing");
+      return false;
+    }
       return (await Supabase.instance.client.from(tableName).insert({
             'email': email,
             'key': key,
