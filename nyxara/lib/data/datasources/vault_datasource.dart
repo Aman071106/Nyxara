@@ -64,18 +64,19 @@ class VaultDatasource {
       bool iskeycorrect = await verifyKey(masterKey, email);
       if (!iskeycorrect) return false;
       // Check for duplicate
-    final existing = await Supabase.instance.client
-        .from(tableName)
-        .select()
-        .eq('email', email)
-        .eq('title', title)
-        .eq('key', key)
-        .maybeSingle();
+      final existing =
+          await Supabase.instance.client
+              .from(tableName)
+              .select()
+              .eq('email', email)
+              .eq('title', title)
+              .eq('key', key)
+              .maybeSingle();
 
-    if (existing != null) {
-      log("Duplicate entry exists: $existing");
-      return false;
-    }
+      if (existing != null) {
+        log("Duplicate entry exists: $existing");
+        return false;
+      }
       return (await Supabase.instance.client.from(tableName).insert({
             'email': email,
             'key': key,
@@ -126,7 +127,6 @@ class VaultDatasource {
     String masterKey,
   ) async {
     try {
-      
       bool iskeycorrect = await verifyKey(masterKey, email);
       if (!iskeycorrect) return false;
       return (await Supabase.instance.client
@@ -181,6 +181,7 @@ class VaultDatasource {
   Future<List<Map<String, String>>?> getAll(String email) async {
     try {
       log("Fetching items....");
+
       final result = await Supabase.instance.client
           .from(tableName)
           .select()
@@ -196,10 +197,15 @@ class VaultDatasource {
         }
       }
       result.remove(itemCheck);
-
-      return result
-          .map<Map<String, String>>((entry) => Map<String, String>.from(entry))
-          .toList();
+      var ans =
+          result
+              .map<Map<String, String>>(
+                (entry) => Map<String, String>.from(entry),
+              )
+              .toList();
+      // log(ans.runtimeType.toString());
+      // log(ans.toString());
+      return ans;
     } catch (e) {
       log("Error fetching items --- $e");
       return null;

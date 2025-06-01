@@ -1,4 +1,6 @@
-import 'package:nyxara/data/datasources/vault_dataSource.dart';
+import 'dart:developer';
+
+import 'package:nyxara/data/datasources/vault_datasource.dart';
 import 'package:nyxara/domain/repositories/vault_repository.dart';
 
 class VaultRepoImpl implements VaultRepository {
@@ -22,7 +24,11 @@ class VaultRepoImpl implements VaultRepository {
   @override
   Future<List<Map<String, String>>?> getAll(String email) async {
     //should be like entity-model conversion-do later
-    return await vaultService.getAll(email);
+    var ans = await vaultService.getAll(email);
+    // log("Inside repoimpl");
+    // log(ans.runtimeType.toString());
+    // log(ans.toString());
+    return ans;
   }
 
   @override

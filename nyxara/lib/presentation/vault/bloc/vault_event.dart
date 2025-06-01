@@ -3,6 +3,11 @@ part of 'vault_bloc.dart';
 @immutable
 sealed class VaultEvent {}
 
+final class VaultCheckEvent extends VaultEvent {
+  final String email;
+  VaultCheckEvent({required this.email});
+}
+
 final class VaultCreateEvent extends VaultEvent {
   final String masterKey;
   final String email;
@@ -60,3 +65,12 @@ final class DeleteItemEvent extends VaultEvent {
     required this.masterKey,
   });
 }
+
+final class RevealValueEvent extends VaultEvent {
+  final String masterKey;
+
+  final String encryptedValue;
+  RevealValueEvent({required this.masterKey, required this.encryptedValue});
+}
+
+final class PopMasterKeyEvent extends VaultEvent{}

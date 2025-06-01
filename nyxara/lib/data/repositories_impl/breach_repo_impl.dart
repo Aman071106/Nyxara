@@ -4,7 +4,8 @@ import 'package:nyxara/domain/entities/breach_analytics_entity.dart';
 import 'package:nyxara/domain/repositories/breach_repository.dart';
 
 class BreachRepoImpl implements BreachRepository {
-  final BreachDatasource breachService = BreachDatasource();
+  final BreachDatasource breachService;
+  BreachRepoImpl({required this.breachService});
   @override
   Future<AnalyticsEntity?> fetchAnalytics(String email) async {
     try {
