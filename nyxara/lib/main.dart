@@ -91,8 +91,12 @@ class NyxaraApp extends StatelessWidget {
                 createvaultusecase: Createvaultusecase(
                   vaultRepository: vaultRepository,
                 ),
-                fetchVaultItemsUsecase: FetchVaultItemsUsecase(vaultRepository: vaultRepository),
-                verifyMasterkeyUsecase: VerifyMasterkeyUsecase(vaultRepository: vaultRepository)
+                fetchVaultItemsUsecase: FetchVaultItemsUsecase(
+                  vaultRepository: vaultRepository,
+                ),
+                verifyMasterkeyUsecase: VerifyMasterkeyUsecase(
+                  vaultRepository: vaultRepository,
+                ),
               ),
         ),
         BlocProvider(
